@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Generador de numeros aleatorios</title>
+    <script src="jquery-3.2.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>  </head>
+ </script>
+  <body>
+    <div class="row" name= "numeros">
+    <center>
+      <h1>Generador de números aleatorios</h1>
+    <p>Números Totales:</p>
+    <div class="row">
+      <div class="col-md-12" >
+        <input type="text" name="div1" id="div1" style="text-align: center;" value="20">
+      </div>
+      <br>
+      <p>Números Generados:</p>
+    </div>
+    <div class="row" name="d1">
+      <div class="col-md-4" name="d11">
+        <input type="text" name="generated1" id="generated1" style="text-align: center;">
+      </div>
+      <div class="col-md-4"  name="d12">
+        <input type="text" name="generated2" id="generated2" style="text-align: center;">
+      </div>
+      <div class="col-md-4"  name="d13">
+        <input type="text" name="generated3" id="generated3" style="text-align: center;">
+        <script type="text/javascript">
+        </script>
+      </div>
+    </div>
+    <div class="row">
+      <br>
+      <div class="col-md-12">
+        <input onclick="escrbirvalores(); console.log(rellenarvalores()); location.reload(false)" type="submit" name="button" value="Generar">
+      </div>
+    </div>
+  </div>
+
+      <script type="text/javascript">
+      // var max = 4
+      // var max = document.getElementsByTagName('div1').value;
+      var max=document.getElementById('div1').value;
+
+
+    //  genera un numero aleatorio
+        function getRand(selected, max){
+        var aleatorio = Math.round(Math.random()* (max -1) + 1);
+          if (isInArray(selected, aleatorio)) {
+            console.log("el numero " + aleatorio + " esta en el array");
+            return getRand(selected , max);
+          }else {
+            console.log("el numero " + aleatorio + " no esta en el array");
+          }
+
+          return aleatorio;
+        }
+
+    // rellena el array con valores los cuales no estan ya en el array
+        function rellenarvalores(){
+          var selected = [];
+
+          var a = getRand(selected, max);
+          console.log(a);
+          selected.push(a);
+          var b = getRand(selected, max);
+          console.log(b);
+          selected.push(b);
+          var c = getRand(selected, max);
+          console.log(c);
+          selected.push(c);
+
+          return selected;
+        }
+
+
+    // muestra los valores del array
+        function isInArray(selected, aleatorio){
+          console.log(selected);
+          var a = selected.indexOf(aleatorio);
+          console.log(a);
+          console.log(aleatorio + " esta en el array");
+            if (a==-1) {
+              return false;
+            }else{
+              return true;
+            }
+
+          return a!=-1;
+        }
+
+    //escribe los valores del arrayen los campos de texto
+        function escrbirvalores(){
+
+          var numero_aleatorios = rellenarvalores();
+          $("#generated1").val(numero_aleatorios[0]);
+          $("#generated2").val(numero_aleatorios[1]);
+          $("#generated3").val(numero_aleatorios[2]);
+
+        }
+      </script>
+
+  </body>
+
+</html>
