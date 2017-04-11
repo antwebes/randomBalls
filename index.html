@@ -36,23 +36,25 @@
     <div class="row">
       <br>
       <div class="col-md-12">
-        <input onclick="escrbirvalores(); console.log(rellenarvalores()); location.reload(false)" type="submit" name="button" value="Generar">
+        <input id="generar" type="submit" name="button" value="Generar">
       </div>
     </div>
   </div>
 
       <script type="text/javascript">
-      // var max = 4
-      // var max = document.getElementsByTagName('div1').value;
-      var max=document.getElementById('div1').value;
+      // var numeroDeBolas = 4
+      // var numeroDeBolas = document.getElementsByTagName('div1').value;
+      var numeroDeBolas=document.getElementById('div1').value;
+
+
 
 
     //  genera un numero aleatorio
-        function getRand(selected, max){
-        var aleatorio = Math.round(Math.random()* (max -1) + 1);
+        function getRand(selected, numeroDeBolas){
+        var aleatorio = Math.round(Math.random()* (numeroDeBolas -1) + 1);
           if (isInArray(selected, aleatorio)) {
             console.log("el numero " + aleatorio + " esta en el array");
-            return getRand(selected , max);
+            return getRand(selected , numeroDeBolas);
           }else {
             console.log("el numero " + aleatorio + " no esta en el array");
           }
@@ -61,18 +63,19 @@
         }
 
     // rellena el array con valores los cuales no estan ya en el array
-        function rellenarvalores(){
+        function rellenarvalores(valores){
+          console.log('valores',valores);
           var selected = [];
 
-          var a = getRand(selected, max);
-          console.log(a);
-          selected.push(a);
-          var b = getRand(selected, max);
-          console.log(b);
-          selected.push(b);
-          var c = getRand(selected, max);
-          console.log(c);
-          selected.push(c);
+//          var a = getRand(selected, numeroDeBolas);
+          //console.log(a);
+          selected.push(valores[0]);
+          //var b = getRand(selected, numeroDeBolas);
+          //console.log(b);
+          selected.push(valores[1]);
+          //var c = getRand(selected, numeroDeBolas);
+          //console.log(c);
+          selected.push(valores[2]);
 
           return selected;
         }
@@ -94,15 +97,48 @@
         }
 
     //escribe los valores del arrayen los campos de texto
-        function escrbirvalores(){
+        function escribirvalores(valores){
 
-          var numero_aleatorios = rellenarvalores();
+          var numero_aleatorios = valores;
           $("#generated1").val(numero_aleatorios[0]);
           $("#generated2").val(numero_aleatorios[1]);
           $("#generated3").val(numero_aleatorios[2]);
+          console.log(numero_aleatorios);
+        }
+
+        (function() {
+          misBolasAleatorios();
+             // your page initialization code here
+             // the DOM will be available here
+
+          })();
+
+
+        function misBolasAleatorios(){
+          var elemento= document.getElementById('generar');
+          elemento.addEventListener('click', function() {
+            var numeroDeBolasQueQueremos =document.getElementById('div1').value
+            valoresYaExisten = [];
+            bolas = [];
+
+            //bucle que recorre numeroDeBolasQueQueremos veces
+            var i;
+            for (i = 0; i < 3; i++) {
+                valorAleatorio = getRand(valoresYaExisten, numeroDeBolasQueQueremos);
+                bolas.push(valorAleatorio);
+                valoresYaExisten.push(valorAleatorio);
+            };
+
+            //se acaba el bucle
+            valores = rellenarvalores(bolas);
+            escribirvalores(valores);
+         }, false);
+
+
 
         }
-      </script>
+
+              </script>
 
   </body>
 
