@@ -1,13 +1,80 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="../jquery.js"></script>
     <meta charset="utf-8">
     <title>Generador de numeros aleatorios</title>
-    <script src="jquery-3.2.0.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>  </head>
- </script>
+    <script src="countup.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <style media="screen">
+    html{
+      height: auto;
+      font-family: Roboto,Helvetica,Arial,sans-serif;
+    }
+      #number1, #number2, #number3, #number88{
+        padding-top: 40%;
+        vertical-align: middle;
+      }
+      #generated1{
+        height: 150px;
+        width: 150px;
+        border-radius: 100%;
+        border: 10px solid #ffb606;
+        margin-bottom: 5%;
+        margin-top: 30px;
+        z-index: 1;
+        font-size: 4em;
+      }
+      #generated2{
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        border: 10px solid #ffb606;
+        margin-bottom: 5%;
+        margin-top: 30px;
+        z-index: 1;
+        font-size: 4em;
+      }
+      #generated3{
+        height: 150px;
+        width: 150px;
+        border-radius: 100%;
+        border: 10px solid #ffb606;
+        margin-bottom: 10%;
+        margin-top: 30px;
+        z-index: 1;
+        font-size: 4em;
+      }
+      img{
+        width: 100%;
+        height: auto;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      #generated {
+        position: relative;
+        display: inline-block;
+      }
+      input {
+        text-align: center;;
+        width: 400px;
+        height: 30px;
+        outline: 0;
+       }
+      #cover1, #cover2, #cover3 {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        top: 1;
+        right: 0;
+        /*margin-left: 50px;
+        margin-top: 30px;*/
+        /*margin-bottom: 20%;*/
+      }
+    </style>
+  </head>
   <body>
     <div class="row" name= "numeros">
     <center>
@@ -15,131 +82,149 @@
     <p>Números Totales:</p>
     <div class="row">
       <div class="col-md-12" >
-        <input type="text" name="div1" id="div1" style="text-align: center;" value="20">
+        <div class="col-md-12">
+        <input type="text" name="div1" id="div1" style="text-align: center; width: 100px;" value="20">
       </div>
       <br>
       <p>Números Generados:</p>
     </div>
-    <div class="row" name="d1">
-      <div class="col-md-4" name="d11">
-        <input type="text" name="generated1" id="generated1" style="text-align: center;">
+    <div class="row" name="d1" id="generated">
+      <div class="col-md-4"  name="d11" id="generated1">
+        <!-- <div class="content" id="cover1"><img src="imgs/bola.jpg"/></div> -->
+          <span type="text" name="number1" id="number1" style="text-align: center;"></span>
+
       </div>
-      <div class="col-md-4"  name="d12">
-        <input type="text" name="generated2" id="generated2" style="text-align: center;">
+      <div class="col-md-4"  name="d12" id="generated2">
+        <!-- <div class="content" id="cover2"> -->
+          <span type="text" name="number2" id="number2" style="text-align: center;"></span>
+        <!-- </div> -->
       </div>
-      <div class="col-md-4"  name="d13">
-        <input type="text" name="generated3" id="generated3" style="text-align: center;">
-        <script type="text/javascript">
-        </script>
+      <div class="col-md-4"  name="d13" id="generated3">
+        <!-- <div class="content" id="cover3"> -->
+          <span type="text" name="number3" id="number3" style="text-align: center;"></span>
+        <!-- </div> -->
       </div>
     </div>
     <div class="row">
       <br>
       <div class="col-md-12">
-        <input id="generar" type="submit" name="button" value="Generar">
+        <input id="generar" type="submit" name="button" value="Generar" style="width: 100px;" >
       </div>
     </div>
   </div>
+  <div class="">
+    <span type="text" name="number11" id="number11" style="text-align: center;"></span>
+  </div>
+  <div class="">
+    <span type="text" name="number22" id="number22" style="text-align: center;"></span>
+  </div>
+  <div class="">
+    <span type="text" name="number33" id="number33" style="text-align: center;"></span>
+  </div>
+
+
 
       <script type="text/javascript">
-      // var numeroDeBolas = 4
-      // var numeroDeBolas = document.getElementsByTagName('div1').value;
-      var numeroDeBolas=document.getElementById('div1').value;
-
-
-
+    //recoge el numero maximo del campo de texto incial
+      var maxNumber=document.getElementById('div1').value;
 
     //  genera un numero aleatorio
-        function getRand(selected, numeroDeBolas){
-        var aleatorio = Math.round(Math.random()* (numeroDeBolas -1) + 1);
-          if (isInArray(selected, aleatorio)) {
-            console.log("el numero " + aleatorio + " esta en el array");
-            return getRand(selected , numeroDeBolas);
+        function getRand(selected, maxNumber){
+        var random = Math.round(Math.random()* (maxNumber -1) + 1);
+          if (isInArray(selected, random)) {
+            return getRand(selected , maxNumber);
           }else {
-            console.log("el numero " + aleatorio + " no esta en el array");
           }
-
-          return aleatorio;
+          return random;
         }
 
     // rellena el array con valores los cuales no estan ya en el array
-        function rellenarvalores(valores){
-          console.log('valores',valores);
+        function fillValues(values){
           var selected = [];
-
-//          var a = getRand(selected, numeroDeBolas);
-          //console.log(a);
-          selected.push(valores[0]);
-          //var b = getRand(selected, numeroDeBolas);
-          //console.log(b);
-          selected.push(valores[1]);
-          //var c = getRand(selected, numeroDeBolas);
-          //console.log(c);
-          selected.push(valores[2]);
-
+          selected.push(values[0]);
+          selected.push(values[1]);
+          selected.push(values[2]);
+          console.log(selected);
           return selected;
+          // console.log(selected);
         }
 
-
     // muestra los valores del array
-        function isInArray(selected, aleatorio){
-          console.log(selected);
-          var a = selected.indexOf(aleatorio);
-          console.log(a);
-          console.log(aleatorio + " esta en el array");
+        function isInArray(selected, random){
+          var a = selected.indexOf(random);
             if (a==-1) {
               return false;
             }else{
               return true;
             }
-
           return a!=-1;
         }
 
-    //escribe los valores del arrayen los campos de texto
-        function escribirvalores(valores){
-
-          var numero_aleatorios = valores;
-          $("#generated1").val(numero_aleatorios[0]);
-          $("#generated2").val(numero_aleatorios[1]);
-          $("#generated3").val(numero_aleatorios[2]);
+    //escribe los valores del array en los campos de texto
+        function writeValues(values){
+          var numero_aleatorios = values;
+          $("#number1").text(numero_aleatorios[0]);
+          $("#number2").text(numero_aleatorios[1]);
+          $("#number3").text(numero_aleatorios[2]);
           console.log(numero_aleatorios);
         }
 
         (function() {
-          misBolasAleatorios();
-             // your page initialization code here
-             // the DOM will be available here
-
+          randomBalls();
           })();
 
-
-        function misBolasAleatorios(){
-          var elemento= document.getElementById('generar');
-          elemento.addEventListener('click', function() {
-            var numeroDeBolasQueQueremos =document.getElementById('div1').value
-            valoresYaExisten = [];
-            bolas = [];
-
-            //bucle que recorre numeroDeBolasQueQueremos veces
+    //escucha el evento de click y llama a las funciones una a unaRoboto,Helvetica,Arial,sans-serif;
+        function randomBalls(){
+          var element= document.getElementById('generar');
+          element.addEventListener('click', function() {
+            var maxBalls =document.getElementById('div1').value
+            valuesExists = [];
+            balls = [];
+            //bucle que recorre maxBalls veces
             var i;
             for (i = 0; i < 3; i++) {
-                valorAleatorio = getRand(valoresYaExisten, numeroDeBolasQueQueremos);
-                bolas.push(valorAleatorio);
-                valoresYaExisten.push(valorAleatorio);
+                randomValue = getRand(valuesExists, maxBalls);
+                balls.push(randomValue);
+                valuesExists.push(randomValue);
             };
-
             //se acaba el bucle
-            valores = rellenarvalores(bolas);
-            escribirvalores(valores);
+            values = fillValues(balls);
+            writeValues(values);
+            turnNumbers(values);
          }, false);
-
-
 
         }
 
-              </script>
+        //crea un array igual a los de arriba y con la libreria count up crea el efecto de los numeros
+        function turnNumbers(values){
 
+        var turn = [];
+
+        turn.push(values[0]);
+        turn.push(values[1]);
+        turn.push(values[2]);
+
+        console.log(turn);
+        var options = {
+          useEasing : true,
+          useGrouping : true,
+          separator : ',',
+          decimal : '.',
+          prefix : '',
+          suffix : ''
+        };
+
+        var demo1 = new CountUp("number1", 0, turn[0], 0, 2.5, options);
+        var demo2 = new CountUp("number2", 0, turn[1], 0, 2.5, options);
+        var demo3 = new CountUp("number3", 0, turn[2], 0, 2.5, options);
+
+        demo1.start();
+        demo2.start();
+        demo3.start();
+
+        return turn;
+      }
+
+      </script>
   </body>
-
 </html>
