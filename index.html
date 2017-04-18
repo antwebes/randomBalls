@@ -1,82 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="../jquery.js"></script>
+    <!-- <script type="text/javascript" src="../jquery.js"></script> -->
     <meta charset="utf-8">
     <title>Generador de numeros aleatorios</title>
+    <link rel="stylesheet" href="css/style1.css" title="min-width:768px">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="countup.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    <style media="screen">
-    html{
-      height: auto;
-      font-family: Roboto,Helvetica,Arial,sans-serif;
-    }
-      #number1, #number2, #number3, #number88{
-        padding-top: 40%;
-        vertical-align: middle;
-      }
-      #generated1{
-        height: 150px;
-        width: 150px;
-        border-radius: 100%;
-        border: 10px solid #ffb606;
-        margin-bottom: 5%;
-        margin-top: 30px;
-        z-index: 1;
-        font-size: 4em;
-      }
-      #generated2{
-        height: 150px;
-        width: 150px;
-        border-radius: 50%;
-        border: 10px solid #ffb606;
-        margin-bottom: 5%;
-        margin-top: 30px;
-        z-index: 1;
-        font-size: 4em;
-      }
-      #generated3{
-        height: 150px;
-        width: 150px;
-        border-radius: 100%;
-        border: 10px solid #ffb606;
-        margin-bottom: 10%;
-        margin-top: 30px;
-        z-index: 1;
-        font-size: 4em;
-      }
-      img{
-        width: 100%;
-        height: auto;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      #generated {
-        position: relative;
-        display: inline-block;
-      }
-      input {
-        text-align: center;;
-        width: 400px;
-        height: 30px;
-        outline: 0;
-       }
-      #cover1, #cover2, #cover3 {
-        width: 150px;
-        height: 150px;
-        position: absolute;
-        top: 1;
-        right: 0;
-        /*margin-left: 50px;
-        margin-top: 30px;*/
-        /*margin-bottom: 20%;*/
-      }
-    </style>
+
   </head>
   <body>
-    <div class="row" name= "numeros">
+  <div class="row" name= "numeros">
     <center>
       <h1>Generador de números aleatorios</h1>
     <p>Números Totales:</p>
@@ -89,40 +24,24 @@
       <p>Números Generados:</p>
     </div>
     <div class="row" name="d1" id="generated">
-      <div class="col-md-4"  name="d11" id="generated1">
-        <!-- <div class="content" id="cover1"><img src="imgs/bola.jpg"/></div> -->
-          <span type="text" name="number1" id="number1" style="text-align: center;"></span>
-
+      <div class="col-xs-6 col-md-4"  name="d11" id="generated1">
+          <!-- <span type="text" name="number1" id="number1"></span> -->
       </div>
-      <div class="col-md-4"  name="d12" id="generated2">
-        <!-- <div class="content" id="cover2"> -->
-          <span type="text" name="number2" id="number2" style="text-align: center;"></span>
-        <!-- </div> -->
+      <div class="col-xs-6 col-md-4"  name="d12" id="generated2">
+          <!-- <span type="text" name="number2" id="number2"></span> -->
       </div>
-      <div class="col-md-4"  name="d13" id="generated3">
-        <!-- <div class="content" id="cover3"> -->
-          <span type="text" name="number3" id="number3" style="text-align: center;"></span>
-        <!-- </div> -->
+      <div class="col-xs-6 col-md-4"  name="d13" id="generated3">
+          <!-- <span type="text" name="number3" id="number3"></span> -->
       </div>
     </div>
     <div class="row">
       <br>
       <div class="col-md-12">
-        <input id="generar" type="submit" name="button" value="Generar" style="width: 100px;" >
+        <input id="generar" type="submit" name="button" value="Generar" >
       </div>
     </div>
   </div>
-  <div class="">
-    <span type="text" name="number11" id="number11" style="text-align: center;"></span>
   </div>
-  <div class="">
-    <span type="text" name="number22" id="number22" style="text-align: center;"></span>
-  </div>
-  <div class="">
-    <span type="text" name="number33" id="number33" style="text-align: center;"></span>
-  </div>
-
-
 
       <script type="text/javascript">
     //recoge el numero maximo del campo de texto incial
@@ -146,7 +65,6 @@
           selected.push(values[2]);
           console.log(selected);
           return selected;
-          // console.log(selected);
         }
 
     // muestra los valores del array
@@ -163,9 +81,9 @@
     //escribe los valores del array en los campos de texto
         function writeValues(values){
           var numero_aleatorios = values;
-          $("#number1").text(numero_aleatorios[0]);
-          $("#number2").text(numero_aleatorios[1]);
-          $("#number3").text(numero_aleatorios[2]);
+          $("#generated1").text(numero_aleatorios[0]);
+          $("#generated2").text(numero_aleatorios[1]);
+          $("#generated3").text(numero_aleatorios[2]);
           console.log(numero_aleatorios);
         }
 
@@ -204,7 +122,6 @@
         turn.push(values[1]);
         turn.push(values[2]);
 
-        console.log(turn);
         var options = {
           useEasing : true,
           useGrouping : true,
@@ -214,9 +131,9 @@
           suffix : ''
         };
 
-        var demo1 = new CountUp("number1", 0, turn[0], 0, 2.5, options);
-        var demo2 = new CountUp("number2", 0, turn[1], 0, 2.5, options);
-        var demo3 = new CountUp("number3", 0, turn[2], 0, 2.5, options);
+        var demo1 = new CountUp("generated1", 0, turn[0], 0, 2.5, options);
+        var demo2 = new CountUp("generated2", 0, turn[1], 0, 5, options);
+        var demo3 = new CountUp("generated3", 0, turn[2], 0, 7.5, options);
 
         demo1.start();
         demo2.start();
