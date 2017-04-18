@@ -8,7 +8,6 @@ html{
   }*/
   #generated{
     height: 225px;
-    position: relative;
     display: inline-block;
   }
   #generated1{
@@ -34,6 +33,28 @@ html{
     padding-top: 5%
   }
   #generated3{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 10px solid #ffb606;
+    margin-bottom: 5%;
+    margin-top: 30px;
+    font-size: 4em;
+    text-align: center;
+    padding-top: 5%
+  }
+  #generated4{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 10px solid #ffb606;
+    margin-bottom: 5%;
+    margin-top: 30px;
+    font-size: 4em;
+    text-align: center;
+    padding-top: 5%
+  }
+  #generated5{
     height: 150px;
     width: 150px;
     border-radius: 50%;
@@ -78,6 +99,28 @@ html{
     /*padding-right: 20%*/
   }
   #generated3{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 10px solid #ffb606;
+    margin-bottom: 5%;
+    margin-top: 30px;
+    font-size: 3em;
+    text-align: center;
+    padding-top: 4%;
+  }
+  #generated4{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 10px solid #ffb606;
+    margin-bottom: 5%;
+    margin-top: 30px;
+    font-size: 3em;
+    text-align: center;
+    padding-top: 4%;
+  }
+  #generated5{
     height: 100px;
     width: 100px;
     border-radius: 50%;

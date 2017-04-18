@@ -14,25 +14,17 @@
   <div class="row" name= "numeros">
     <center>
       <h1>Generador de números aleatorios</h1>
-    <p>Números Totales:</p>
+    <!-- <p>Números Totales:</p> -->
     <div class="row">
       <div class="col-md-12" >
-        <div class="col-md-12">
-        <input type="text" name="div1" id="div1" style="text-align: center; width: 100px;" value="20">
-      </div>
+        <!-- <div class="col-md-12">
+        <input type="text" name="div1" id="div1" style="text-align: center; width: 100px;" value="">
+      </div> -->
       <br>
       <p>Números Generados:</p>
     </div>
     <div class="row" name="d1" id="generated">
-      <div class="col-xs-6 col-md-4"  name="d11" id="generated1">
-          <!-- <span type="text" name="number1" id="number1"></span> -->
-      </div>
-      <div class="col-xs-6 col-md-4"  name="d12" id="generated2">
-          <!-- <span type="text" name="number2" id="number2"></span> -->
-      </div>
-      <div class="col-xs-6 col-md-4"  name="d13" id="generated3">
-          <!-- <span type="text" name="number3" id="number3"></span> -->
-      </div>
+
     </div>
     <div class="row">
       <br>
@@ -44,17 +36,40 @@
   </div>
 
       <script type="text/javascript">
+      var config = {
+        "bolas": 5
+      };
+
+      //generar todos los div
+
+      for (i=1;i<=5;i++) {
+        jQuery('<div/>', {
+          id: 'generated' + i ,
+          class:'col-md-4' ,
+          href: '',
+          title: '',
+          rel: 'external',
+          text: ''
+
+        }).appendTo('#generated');
+      }
+
+
+
+
+
     //recoge el numero maximo del campo de texto incial
-      var maxNumber=document.getElementById('div1').value;
+      // var maxNumber=document.getElementById('div1').value;
 
     //  genera un numero aleatorio
-        function getRand(selected, maxNumber){
-        var random = Math.round(Math.random()* (maxNumber -1) + 1);
+        function getRand(selected){
+        var random = Math.round(Math.random()* (96 -1) + 1);
           if (isInArray(selected, random)) {
-            return getRand(selected , maxNumber);
+            return getRand(selected);
           }else {
           }
           return random;
+
         }
 
     // rellena el array con valores los cuales no estan ya en el array
@@ -63,6 +78,28 @@
           selected.push(values[0]);
           selected.push(values[1]);
           selected.push(values[2]);
+          selected.push(values[3]);
+          selected.push(values[4]);
+
+          // if (values[0]>25) {
+          //   return fillValues(selected);
+          // }
+          // if (values[1]>49) {
+          //   return fillValues(selected);
+          // }
+          // if (values[2]<50) {
+          //   return getRand(selected);
+          // }
+          // if (values[3]>24) {
+          //   return getRand(selected);
+          // }
+          // if (values[4]<25, values[4]>60) {
+          //   return getRand(selected);
+          // }
+
+
+          // console.log(values[0]);
+
           console.log(selected);
           return selected;
         }
@@ -84,7 +121,10 @@
           $("#generated1").text(numero_aleatorios[0]);
           $("#generated2").text(numero_aleatorios[1]);
           $("#generated3").text(numero_aleatorios[2]);
-          console.log(numero_aleatorios);
+          $("#generated4").text(numero_aleatorios[3]);
+          $("#generated5").text(numero_aleatorios[4]);
+
+          // console.log(numero_aleatorios);
         }
 
         (function() {
@@ -95,12 +135,12 @@
         function randomBalls(){
           var element= document.getElementById('generar');
           element.addEventListener('click', function() {
-            var maxBalls =document.getElementById('div1').value
+            var maxBalls =96
             valuesExists = [];
             balls = [];
             //bucle que recorre maxBalls veces
             var i;
-            for (i = 0; i < 3; i++) {
+            for (i = 0; i < 5; i++) {
                 randomValue = getRand(valuesExists, maxBalls);
                 balls.push(randomValue);
                 valuesExists.push(randomValue);
@@ -121,6 +161,15 @@
         turn.push(values[0]);
         turn.push(values[1]);
         turn.push(values[2]);
+        turn.push(values[3]);
+        turn.push(values[4]);
+
+
+        // console.log(turn[0]);
+        // console.log(turn[1]);
+        // console.log(turn[2]);
+        // console.log(turn[3]);
+        // console.log(turn[4]);
 
         var options = {
           useEasing : true,
@@ -131,14 +180,20 @@
           suffix : ''
         };
 
-        var demo1 = new CountUp("generated1", 0, turn[0], 0, 2.5, options);
-        var demo2 = new CountUp("generated2", 0, turn[1], 0, 5, options);
-        var demo3 = new CountUp("generated3", 0, turn[2], 0, 7.5, options);
+        var demo1 = new CountUp("generated1", 0, turn[0], 0, 2, options);
+        var demo2 = new CountUp("generated2", 0, turn[1], 0, 4, options);
+        var demo3 = new CountUp("generated3", 0, turn[2], 0, 6, options);
+        var demo4 = new CountUp("generated4", 0, turn[3], 0, 8, options);
+        var demo5 = new CountUp("generated5", 0, turn[4], 0, 10, options);
+
 
         demo1.start();
         demo2.start();
         demo3.start();
+        demo4.start();
+        demo5.start();
 
+        // console.log(demo1);
         return turn;
       }
 
