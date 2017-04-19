@@ -1,110 +1,114 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <script type="text/javascript" src="../jquery.js"></script> -->
     <meta charset="utf-8">
     <title>Generador de numeros aleatorios</title>
     <link rel="stylesheet" href="css/style1.css" title="min-width:768px">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="countup.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-
   </head>
   <body>
-  <div class="row" name= "numeros">
+  <div class="container" name= "numeros">
     <center>
       <h1>Generador de números aleatorios</h1>
-    <!-- <p>Números Totales:</p> -->
     <div class="row">
       <div class="col-md-12" >
-        <!-- <div class="col-md-12">
-        <input type="text" name="div1" id="div1" style="text-align: center; width: 100px;" value="">
-      </div> -->
-      <br>
       <p>Números Generados:</p>
     </div>
-    <div class="row" name="d1" id="generated">
+   </div>
+   <div class="row" name="d1" id="generated">
 
-    </div>
-    <div class="row">
-      <br>
-      <div class="col-md-12">
-        <input id="generar" type="submit" name="button" value="Generar" >
-      </div>
-    </div>
-  </div>
-  </div>
+   </div>
+   <div class="row">
+     <br>
+     <div class="col-md-12">
+       <input id="generar" type="submit" name="button" value="Generar" >
+     </div>
+   </div>
+</div>
 
       <script type="text/javascript">
-      var config = {
-        "bolas": 5
-      };
+
+      var bolas = [
+        {
+          "id": "bola0",
+          "min": 1,
+          "max": 25,
+          "title": "Texto",
+        },
+        {
+          "id": "bola1",
+          "min": 1,
+          "max": 49,
+          "title": "Texto",
+        },
+        {
+          "id": "bola2",
+          "min": 50,
+          "max": 96,
+          "title": "Texto",
+        },
+        {
+          "id": "bola3",
+          "min": 1,
+          "max": 24,
+          "title": "Texto",
+        },
+        {
+          "id": "bola4",
+          "min": 25,
+          "max": 60,
+          "title": "Texto",
+        },
+        // {
+        //   "id": "bola5",
+        //   "min": 1,
+        //   "max": 2,
+        //   "title": "Texto",
+        // },
+
+      ];
 
       //generar todos los div
+      for (i=0;i<bolas.length;i++) {
+        var col = jQuery('<div/>', {
+          class:'col-md-4',
+        });
 
-      for (i=1;i<=5;i++) {
-        jQuery('<div/>', {
-          id: 'generated' + i ,
-          class:'col-md-4' ,
-          href: '',
-          title: '',
-          rel: 'external',
-          text: ''
+        var bola = bolas[i];
+        var bolaContainer = jQuery('<div/>', {
+          id: bola["id"],
+          class:'bola',
+        });
 
-        }).appendTo('#generated');
+        var title = jQuery('<p/>', {
+          html: bola["title"],
+          class:'bola-title'
+        });
+
+
+        $(col).append(title);
+
+        $(col).append(bolaContainer);
+
+
+
+        $("#generated").append(col);
       }
 
+      //genera un numero aleatorio
+        function getRand(selected, bola){
+        var random = Math.round(Math.random()* (bola["max"] - bola["min"]) + bola["min"]);
 
-
-
-
-    //recoge el numero maximo del campo de texto incial
-      // var maxNumber=document.getElementById('div1').value;
-
-    //  genera un numero aleatorio
-        function getRand(selected){
-        var random = Math.round(Math.random()* (96 -1) + 1);
           if (isInArray(selected, random)) {
-            return getRand(selected);
+            return getRand(selected, bola);
           }else {
           }
           return random;
-
         }
 
-    // rellena el array con valores los cuales no estan ya en el array
-        function fillValues(values){
-          var selected = [];
-          selected.push(values[0]);
-          selected.push(values[1]);
-          selected.push(values[2]);
-          selected.push(values[3]);
-          selected.push(values[4]);
-
-          // if (values[0]>25) {
-          //   return fillValues(selected);
-          // }
-          // if (values[1]>49) {
-          //   return fillValues(selected);
-          // }
-          // if (values[2]<50) {
-          //   return getRand(selected);
-          // }
-          // if (values[3]>24) {
-          //   return getRand(selected);
-          // }
-          // if (values[4]<25, values[4]>60) {
-          //   return getRand(selected);
-          // }
-
-
-          // console.log(values[0]);
-
-          console.log(selected);
-          return selected;
-        }
-
-    // muestra los valores del array
+      //muestra los valores del array
         function isInArray(selected, random){
           var a = selected.indexOf(random);
             if (a==-1) {
@@ -115,86 +119,77 @@
           return a!=-1;
         }
 
-    //escribe los valores del array en los campos de texto
+      //escribe los valores del array en los campos de texto
         function writeValues(values){
-          var numero_aleatorios = values;
-          $("#generated1").text(numero_aleatorios[0]);
-          $("#generated2").text(numero_aleatorios[1]);
-          $("#generated3").text(numero_aleatorios[2]);
-          $("#generated4").text(numero_aleatorios[3]);
-          $("#generated5").text(numero_aleatorios[4]);
 
-          // console.log(numero_aleatorios);
+          for (i = 0; i < bolas.length; i++) {
+
+          var numero_aleatorios = values;
+          $(bola["id"]).text(numero_aleatorios[i]);
+
+        }
         }
 
         (function() {
           randomBalls();
           })();
 
-    //escucha el evento de click y llama a las funciones una a unaRoboto,Helvetica,Arial,sans-serif;
+      //escucha el evento de click y llama a las funciones una a una
         function randomBalls(){
-          var element= document.getElementById('generar');
-          element.addEventListener('click', function() {
-            var maxBalls =96
-            valuesExists = [];
-            balls = [];
-            //bucle que recorre maxBalls veces
-            var i;
-            for (i = 0; i < 5; i++) {
-                randomValue = getRand(valuesExists, maxBalls);
-                balls.push(randomValue);
-                valuesExists.push(randomValue);
-            };
-            //se acaba el bucle
-            values = fillValues(balls);
-            writeValues(values);
-            turnNumbers(values);
-         }, false);
+          $('#generar').on('click', function (){
 
+              valuesExists = [];
+              balls = [];
+
+              for (i=0; i<bolas.length; i++) {
+
+                var bola = bolas[i];
+                var maxBalls = bola["max"];
+                var minBalls = bola["min"];
+
+      //bucle que recorre maxBalls veces
+                  randomValue = getRand(valuesExists, bola);
+                  balls.push(randomValue);
+                  valuesExists.push(randomValue);
+              };
+              //se acaba el bucle
+
+              writeValues(balls);
+              turnNumbers(balls);
+         });
         }
 
-        //crea un array igual a los de arriba y con la libreria count up crea el efecto de los numeros
+      //crea un array igual a los de arriba y con la libreria count up crea el efecto de los numeros
         function turnNumbers(values){
+          var turn = [];
+          var timer = 0;
 
-        var turn = [];
+          var options = {
+            useEasing : true,
+            useGrouping : true,
+            separator : ',',
+            decimal : '.',
+            prefix : '',
+            suffix : ''
+          };
 
-        turn.push(values[0]);
-        turn.push(values[1]);
-        turn.push(values[2]);
-        turn.push(values[3]);
-        turn.push(values[4]);
-
-
-        // console.log(turn[0]);
-        // console.log(turn[1]);
-        // console.log(turn[2]);
-        // console.log(turn[3]);
-        // console.log(turn[4]);
-
-        var options = {
-          useEasing : true,
-          useGrouping : true,
-          separator : ',',
-          decimal : '.',
-          prefix : '',
-          suffix : ''
-        };
-
-        var demo1 = new CountUp("generated1", 0, turn[0], 0, 2, options);
-        var demo2 = new CountUp("generated2", 0, turn[1], 0, 4, options);
-        var demo3 = new CountUp("generated3", 0, turn[2], 0, 6, options);
-        var demo4 = new CountUp("generated4", 0, turn[3], 0, 8, options);
-        var demo5 = new CountUp("generated5", 0, turn[4], 0, 10, options);
+          for (i = 0; i < bolas.length; i++) {
+            timer+=2;
+            turn.push(values[i]);
+            var demo1 = new CountUp("bola"+i, 0, turn[i], 0, timer, options);
+            demo1.start();
+          }
 
 
-        demo1.start();
-        demo2.start();
-        demo3.start();
-        demo4.start();
-        demo5.start();
 
-        // console.log(demo1);
-        return turn;
+
+
+
+          return turn;
+
+
+
+
       }
 
       </script>
