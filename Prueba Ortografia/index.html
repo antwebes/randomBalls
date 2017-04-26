@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Prueba Ortografia</title>
+    <link rel="stylesheet" href="css/style.css" title="min-width:640px">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="containerprincipal" id="containerprincipal" name="palabras">
+      <center>
+        Prueba de Ortografía
+        <div class="row">
+          <div class="col-md-12" id="puntuacion">
+            <p>Puntuación: 0</p>
+          </div>
+        </div>
+        </div>
+        <center>
+        <div class="siguiente">
+          <input type="button" id="siguiente" value="Siguiente">
+        </div>
+    <script type="text/javascript">
+      var palabras = [
+
+        {
+          "palabra": "Almóndiga",
+          "resultado": 1,//1= correcto, 2= incorrecto
+        },
+        {
+          "palabra": "Bracmán",
+          "resultado": 1,//1= correcto, 2= incorrecto
+        },
+        {
+          "palabra": "Ventiuno",
+          "resultado": 2,//1= correcto, 2= incorrecto
+        },
+        // {
+        //   "palabra": "Apepsia",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Centígramo",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Cián",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Maléolo",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Pábulo",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Duunvirato",
+        //   "resultado": 1,
+        // },
+        // {
+        //   "palabra": "Envudo",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "CD-Rom",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Byte",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Diciente",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Apartheid",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Yerbajo",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Unción",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Buniato",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Paparazzi",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Cafelito",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+      ]
+      var palabras2 = [
+        {
+          "palabra": "Envudo",
+          "resultado": 2,//1= correcto, 2= incorrecto
+        },
+        {
+          "palabra": "CD-Rom",
+          "resultado": 1,//1= correcto, 2= incorrecto
+        },
+        {
+          "palabra": "Byte",
+          "resultado": 2,//1= correcto, 2= incorrecto
+        },
+        // {
+        //   "palabra": "Diciente",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Apartheid",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Yerbajo",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Unción",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Buniato",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Paparazzi",
+        //   "resultado": 2,//1= correcto, 2= incorrecto
+        // },
+        // {
+        //   "palabra": "Cafelito",
+        //   "resultado": 1,//1= correcto, 2= incorrecto
+        // },
+      ]
+
+      for (i=0;i<palabras.length;i++) {
+        var palabra = palabras[i];
+        var col = jQuery('<div/>', {
+          class:'contenedor',
+          id:'contenedor',
+        });
+
+        var col1 = jQuery('<div/>', {
+          class:'row',
+        });
+
+        var col2 = jQuery('<div/>', {
+          class:'col-md-12',
+          id:'palabra'+ i,
+        });
+
+        var col3 = jQuery('<div/>', {
+          class:'row',
+          data:'cont'+i,
+        });
+
+        var col4 = jQuery('<div/>', {
+          class:'col-md-6',
+        });
+
+        var col6 = jQuery('<div/>', {
+          class:'col-md-6',
+        });
+
+        var col7 = jQuery('<input>', {
+          type:'button',
+          id:'correcto'+i,
+          class: 'resultado'+palabra["resultado"],
+          value:'Correcto',
+        });
+
+        var col8 = jQuery('<input>', {
+          type:'button',
+          id:'incorrecto'+i,
+          class: 'resultado'+palabra["resultado"],
+          value:'Incorrecto',
+        });
+
+        var col9 = jQuery('<center>', {
+        });
+
+        $(col).append(col9);
+        $(col9).append(col1)
+        $(col1).append(col2);
+        $(col9).append(col3);
+        $(col3).append(col4);
+        $(col3).append(col6);
+        $(col4).append(col7);
+        $(col6).append(col8);
+
+        $("#containerprincipal").append(col);
+      }
+
+
+      var num=0;
+
+      function sumar() {
+        num++;
+        }
+
+
+        for (var i = 0; i <palabras.length; i++) {
+          var palabra = palabras[i];
+          $('#palabra'+ i).append(palabra["palabra"]);
+      }
+
+
+      $('input').on("click", function(ev){
+        correctQuestion(ev);
+        incorrectQuestion(ev);
+
+        // console.log(this.parentElement.parentElement);
+        // console.log(($(ev.currentTarget)[0]));
+      });
+
+    $('#siguiente').on("click", function(){
+      borrarDivs();
+      crearDivs();
+    });
+
+
+
+      function correctQuestion(ev){
+//si el resultado es 1 y pulso el boton correcto pinto el boto de verde lo desactivo  pinto la letra de blanco,
+//llamo a la funcion sumar que suma la puntuacion y llamoa a la funcion selectcorrect.
+        if (($(ev.currentTarget)[0].className) == "resultado1" && ($(ev.currentTarget)[0].defaultValue) == "Correcto"){
+              $(ev.currentTarget)[0].style.background='#71bf44';
+              $(ev.currentTarget)[0].disabled = true;
+              $(ev.currentTarget)[0].style.color='#fff';
+              sumar();
+              $('p').text('Puntuación: '+ num);
+              selectcorrect(ev);
+              // selectcorrect2(ev);
+        }
+//si el resultado es 2 y pulso el boton incorrecto pinto el boto de verde lo desactivo  pinto la letra de blanco,
+//llamo a la funcion sumar que suma la puntuacion y llamo a la funcion selectcorrect.
+        if (($(ev.currentTarget)[0].className) == "resultado2" && ($(ev.currentTarget)[0].defaultValue) == "Incorrecto"){
+              $(ev.currentTarget)[0].style.background='#71bf44';
+              $(ev.currentTarget)[0].disabled = true;
+              $(ev.currentTarget)[0].style.color='#fff';
+              sumar();
+              $('p').text('Puntuación: '+ num);
+              selectincorrect2(ev);
+              // selectcorrect2(ev);
+        }
+      }
+//si el resultado es 1 y pulso el boton incorrecto pinto el boto de rojo lo desactivo  pinto la letra de blanco,
+//llamo a la funcion selectincorrect.
+      function incorrectQuestion(ev){
+        if (($(ev.currentTarget)[0].className) == "resultado1" && ($(ev.currentTarget)[0].defaultValue) == "Incorrecto"){
+              $(ev.currentTarget)[0].style.background='#d85c5c';
+              $(ev.currentTarget)[0].disabled = true;
+              $(ev.currentTarget)[0].style.color='#fff';
+              // selectincorrect(ev);
+              selectincorrect(ev);
+        }
+//si el resultado es 2 y pulso el boton correcto pinto el boto de rojo lo desactivo  pinto la letra de blanco,
+//llamo a la funcion selectincorrect.
+        if (($(ev.currentTarget)[0].className) == "resultado2" && ($(ev.currentTarget)[0].defaultValue) == "Correcto"){
+              $(ev.currentTarget)[0].style.background='#d85c5c';
+              $(ev.currentTarget)[0].disabled = true;
+              $(ev.currentTarget)[0].style.color='#fff';
+              // selectincorrect(ev);
+              selectcorrect2(ev);
+        }
+      }
+//si pulso el boton correcto+i desactivo el boton incorrecto+i, si elresultado es 1 pinto el boton incorrecto+i
+//de rojo  la letra de blanco, si no es asi lo pinto de verde y la letra de blanco
+      function selectcorrect(ev){
+        for (var i = 0; i < palabras.length; i++) {
+
+        if (($(ev.currentTarget)[0].id)== "correcto"+i) {
+          $("#incorrecto"+i).attr("disabled", true);
+          if (($(ev.currentTarget)[0].className) == "resultado1") {
+            $('#incorrecto'+i).css('background-color', '#d85c5c');//rojo
+            $('#incorrecto'+i).css('color', '#fff');
+          }else {
+            $('#correcto'+i).css('background-color', '#71bf44');//verde
+            $('#correcto'+i).css('color', '#fff');
+          }
+          }
+        }
+      }
+//si pulso el boton incorrecto+i desactivo el boton correcto+i, si elresultado es 1 pinto el boton correcto+i
+//de verde la letra de blanco, si no es asi lo pinto de rojo y la letra de blanco
+      function selectincorrect(ev){
+        for (var i = 0; i < palabras.length; i++) {
+
+        if (($(ev.currentTarget)[0].id)== "incorrecto"+i) {
+          $("#correcto"+i).attr("disabled", true);
+          if (($(ev.currentTarget)[0].className) == "resultado1") {
+            $('#correcto'+i).css('background-color', '#71bf44');//verde
+            $('#correcto'+i).css('color', '#fff');
+          }else {
+            $('#incorrecto'+i).css('background-color', '#d85c5c');//rojo
+            $('#incorrecto'+i).css('color', '#fff');
+          }
+          }
+        }
+      }
+
+      function selectcorrect2(ev){
+        for (var i = 0; i < palabras.length; i++) {
+
+        if (($(ev.currentTarget)[0].id)== "correcto"+i) {
+          $("#incorrecto"+i).attr("disabled", true);
+          if (($(ev.currentTarget)[0].className) == "resultado2") {
+            $('#incorrecto'+i).css('background-color', '#71bf44');//verde
+            $('#incorrecto'+i).css('color', '#fff');
+          }else {
+            $('#correcto'+i).css('background-color', '#d85c5c');//rojo
+            $('#correcto'+i).css('color', '#fff');
+          }
+          }
+        }
+      }
+
+      function selectincorrect2(ev){
+        for (var i = 0; i < palabras.length; i++) {
+
+        if (($(ev.currentTarget)[0].id)== "incorrecto"+i) {
+          $("#correcto"+i).attr("disabled", true);
+          if (($(ev.currentTarget)[0].className) == "resultado2") {
+            $('#correcto'+i).css('background-color', '#d85c5c');//verde
+            $('#correcto'+i).css('color', '#fff');
+          }else {
+            $('#incorrecto'+i).css('background-color', '#71bf44');//rojo
+            $('#incorrecto'+i).css('color', '#fff');
+          }
+          }
+        }
+      }
+
+      function borrarDivs(){
+        for (var i = 0; i < palabras.length; i++) {
+        $('#contenedor').remove();
+      }
+      }
+
+      function crearDivs(){
+        for (i=0;i<palabras2.length;i++) {
+          var palabra = palabras[i];
+          var col = jQuery('<div/>', {
+            class:'contenedor',
+            id:'contenedor',
+          });
+
+          var col1 = jQuery('<div/>', {
+            class:'row',
+          });
+
+          var col2 = jQuery('<div/>', {
+            class:'col-md-12',
+            id:'palabra'+ i,
+          });
+
+          var col3 = jQuery('<div/>', {
+            class:'row',
+          });
+
+          var col4 = jQuery('<div/>', {
+            class:'col-md-6',
+          });
+
+          var col6 = jQuery('<div/>', {
+            class:'col-md-6',
+          });
+
+          var col7 = jQuery('<input>', {
+            type:'button',
+            id:'correcto'+i,
+            class: 'resultado'+palabra["resultado"],
+            value:'Correcto',
+          });
+
+          var col8 = jQuery('<input>', {
+            type:'button',
+            id:'incorrecto'+i,
+            class: 'resultado'+palabra["resultado"],
+            value:'Incorrecto',
+          });
+
+          var col9 = jQuery('<center>', {
+          });
+
+          $(col).append(col9);
+          $(col9).append(col1)
+          $(col1).append(col2);
+          $(col9).append(col3);
+          $(col3).append(col4);
+          $(col3).append(col6);
+          $(col4).append(col7);
+          $(col6).append(col8);
+
+          $("#containerprincipal").append(col);
+        }
+
+              var num=0;
+
+              function sumar() {
+                num++;
+                }
+
+                for (var i = 0; i <palabras2.length; i++) {
+                  var palabra2 = palabras2[i];
+                  $('#palabra'+ i).append(palabra2["palabra"]);
+              }
+
+              $('input').on("click", function(ev){
+                correctQuestion(ev);
+                incorrectQuestion(ev);
+
+            });
+
+      }
+
+
+
+
+    </script>
+  </body>
+</html>

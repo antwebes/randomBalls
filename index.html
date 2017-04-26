@@ -17,9 +17,13 @@
       <p>Números Generados:</p>
     </div>
    </div>
+
+
    <div class="row" name="d1" id="generated">
 
    </div>
+
+
    <div class="row">
      <br>
      <div class="col-md-12">
@@ -61,12 +65,7 @@
           "max": 60,
           "title": "Texto",
         },
-        // {
-        //   "id": "bola5",
-        //   "min": 1,
-        //   "max": 2,
-        //   "title": "Texto",
-        // },
+
 
       ];
 
@@ -151,6 +150,7 @@
                   randomValue = getRand(valuesExists, bola);
                   balls.push(randomValue);
                   valuesExists.push(randomValue);
+                  console.log(randomValue);
               };
               //se acaba el bucle
 
@@ -180,18 +180,8 @@
             demo1.start();
           }
 
-
-
-
-
-
-          return turn;
-
-
-
-
+          return turn
       }
-
       </script>
   </body>
 </html>
